@@ -1,0 +1,113 @@
+import {NUEVO_NUMERO, OPERADOR, CAMBIAR_SIGNO, REINICIAR, RESULTADO} from './Actions.js';
+
+// BUGS ENCONTRADOS
+// Al obtener cualquier resultado, y luego clickear en cualquier numero, este se concatena en lugar de reemplazar el resultado.
+
+
+const initialState = {  // Creo un estado inicial.
+    numA: 0,       // Estado que almacenará el primero número a ingresar.
+    numB: 0,       // Estado que almacenará el segundo número a ingresar.
+    operador: 'SIN-DEFINIR'         // Estado que almacenará la operación matemática que se realizará entre los dos números ingresados al presionarse '='.
+}
+
+// El Reducer contempla el ingreso de un primer número, un operador matemático, un segundo número, y finalmente el
+// boton '=' para realizar la operación entre los dos números. Tambien contempla el cambio de signo del número, y reiniciar todos los valores.
+export default function Reducer (state = initialState, action){
+    switch (action.type) { 
+        case NUEVO_NUMERO:                  // Si se presionó un botón con un número...
+            if (state.operador === 'SIN-DEFINIR'){                // ...y si es el primero de los dos números a ingresar...
+                if (state.numA === 0) {          // ...y si el valor actual del primer número es 0...
+                    return{
+                        ...state,
+                        numA: state.numA = Number(action.payload)   // ...remplazo ese 0 por el número ingresado, convirtiendolo al tipo númerico pues me llega como tipo string.
+
+                    };
+                } else {          // Si el valor actual del primer número es distinto a 0.
+                    return{
+                        ...state,
+                        numA: state.numA + action.payload             // Concateno el nuevo número ingresado con el que estaba almacenado.
+                    };
+                }
+            } else {                // Si se esta ingresando el segundo número...
+                if (state.numB === 0) {         // ...y si el valor actual del segundo número es 0.
+                    return{
+                        ...state,
+                        numB: state.numB = Number(action.payload)    // ...remplazo ese 0 por el número ingresado, convirtiendolo al tipo númerico pues me llega como tipo string.
+                    };
+                } else {              // Si el valor actual del segundo número es distinto a 0.
+                    return{
+                        ...state,
+                        numB: state.numB + action.payload         // Concateno el nuevo número ingresado con el que estaba almacenado.
+                    };
+                }
+            }
+
+        case OPERADOR:             // Si se presionó sobre un operador matemático...
+            return{
+                ...state,
+                operador: state.operador = action.payload           // Lo almaceno en mi estado.
+        }
+        case CAMBIAR_SIGNO:      // Si se presionó el boton para cambiar el signo...
+            switch (state.operador) {        // ...me fijo si debo cambiarle el signo al primero o al segundo número.
+                case 'SIN-DEFINIR':         // Si aun NO se definio una operación a realizar...
+                    return{
+                        ...state,
+                        numA: -state.numA        // ...entonces le tengo que cambiar el signo al primer número.
+                    };
+                default:              // Si ya se definió una operación a realizar...
+                    return{
+                        ...state,
+                        numB: -state.numB           // ...entonces le tengo que cambiar el signo al segundo número.
+                    };
+            }
+ 
+        case REINICIAR:          // Si se presionó el boton 'C' (Clear) reinicio todos los valores...
+            return{
+                ...state,
+                numA: state.numA  = 0,
+                numB: state.numB  = 0,
+                operador: state.operador = 'SIN-DEFINIR'
+        };
+
+        case RESULTADO:     // Si se presionó el boton '='...
+            switch (state.operador) {     // ...relizo la operación matemática correspondiente y almaceno el resultado en el primer número para que se pueda seguir haciendo más cálculos, y reinicio los otros estados.
+                case '+':         
+                    return{
+                        ...state,
+                        numA: Number(state.numA) + Number(state.numB), 
+                        operador: state.operador = 'SIN-DEFINIR',      
+                        numB: state.numB = 0
+                    }
+
+                case '-':      
+                    return{
+                        ...state,
+                        numA: Number(state.numA) - Number(state.numB),
+                        operador: state.operador = 'SIN-DEFINIR',
+                        numB: state.numB = 0
+                    }
+
+                case '*':    
+                    return{
+                        ...state,
+                        numA: Number(state.numA) * Number(state.numB),
+                        operador: state.operador = 'SIN-DEFINIR',
+                        numB: state.numB = 0
+                    }
+
+                case '/':
+                    return{
+                        ...state,
+                        numA: Number(state.numA) / Number(state.numB),
+                        operador: state.operador = 'SIN-DEFINIR',
+                        numB: state.numB = 0
+                    }
+
+                default:
+                    return state;     // Siempre se debe devolver el estado para los casos en los que el Reducer no pueda procesar la Action recibida.
+            }            
+            
+        default:
+            return state;      // Siempre se debe devolver el estado para los casos en los que el Reducer no pueda procesar la Action recibida.
+    }
+} 
