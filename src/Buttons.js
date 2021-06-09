@@ -32,6 +32,7 @@ function Buttons (props){  // A diferencia de un componente de Clase, un compone
                 <Button onClick={props.operador} value={'*'} />
                 <Button onClick={props.operador} value={'-'} />
                 <Button onClick={props.operador} value={'+'} />
+                <Button onClick={props.nuevoNumero} value={'.'} />
             </div>
             <div>
                 <Button onClick={props.cambiarSigno} value={'+/-'} />

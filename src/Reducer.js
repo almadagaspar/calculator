@@ -1,10 +1,8 @@
 import {NUEVO_NUMERO, OPERADOR, CAMBIAR_SIGNO, REINICIAR, RESULTADO} from './Actions.js';
 
-// FUNCIONALIDADES PARA AGREGAR
-// Poder introducir números decimales
-// Repetir la ultima operación al presionar el signo igual.
-// Ver si se puede evitar el codigo que se repite en el Reducer.
-// Poner estilos con CSS.
+// BUGS ENCONTRADOS
+// Cuando los dos números ingresados tienen decimales, y esos valores decimales son contiguos (Ej: 0.1 y 0.2), el resultado es largo e impreciso.
+
 
 
 const initialState = {  // Creo un estado inicial.
@@ -21,11 +19,19 @@ export default function Reducer (state = initialState, action){
         case NUEVO_NUMERO:                  // Si se presionó un botón con un número...
             if (state.operador === 'SIN-DEFINIR'){                // ...y si es el primero de los dos números a ingresar...
                 if (state.numA === 0 || state.reemplazar === true) {          // ...y si el valor actual del primer número es 0, o es el resultado de una operación...
-                    return{
-                        ...state,
-                        numA: state.numA = Number(action.payload),   // ...remplazo ese 0 por el número ingresado, convirtiendolo al tipo númerico pues me llega como tipo string.
-                        reemplazar: state.reemplazar = false
-                    };
+                    if (action.payload === "."){               // ...si el boton presionado es el punto decimal..
+                        return{
+                            ...state,
+                            numA: state.numA = "0.",          // ...remplazo el "0" actual por "0."
+                            reemplazar: state.reemplazar = false
+                        };
+                    } else {                                 // ...si el boton presionado es un número...
+                        return{
+                            ...state,
+                            numA: state.numA = Number(action.payload),   // ...remplazo el 0 actual por el número ingresado, convirtiendolo al tipo númerico pues me llega como tipo string.
+                            reemplazar: state.reemplazar = false
+                        };
+                    }
                 } else {          // Si el valor actual del primer número es distinto a 0.
                     return{
                         ...state,
@@ -34,10 +40,19 @@ export default function Reducer (state = initialState, action){
                 }
             } else {                // Si se esta ingresando el segundo número...
                 if (state.numB === 0) {         // ...y si el valor actual del segundo número es 0.
-                    return{
-                        ...state,
-                        numB: state.numB = Number(action.payload)    // ...remplazo ese 0 por el número ingresado, convirtiendolo al tipo númerico pues me llega como tipo string.
-                    };
+                    if (action.payload === "."){             // ...si el boton presionado es el punto decimal..
+                        return{
+                            ...state,
+                            numB: state.numB = "0.",         // ...remplazo el "0" actual por "0."
+                            reemplazar: state.reemplazar = false
+                        };
+                    } else {                            // ...si el boton presionado es un número...
+                        return{
+                            ...state,
+                            numB: state.numB = Number(action.payload)    // ...remplazo el 0 actual por el número ingresado, convirtiendolo al tipo númerico pues me llega como tipo string.
+                        };
+
+                    }
                 } else {              // Si el valor actual del segundo número es distinto a 0.
                     return{
                         ...state,
@@ -118,4 +133,6 @@ export default function Reducer (state = initialState, action){
         default:
             return state;      // Siempre se debe devolver el estado para los casos en los que el Reducer no pueda procesar la Action recibida.
     }
+
+    
 } 
