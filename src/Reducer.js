@@ -1,13 +1,17 @@
 import {NUEVO_NUMERO, OPERADOR, CAMBIAR_SIGNO, REINICIAR, RESULTADO} from './Actions.js';
 
-// BUGS ENCONTRADOS
-// Al obtener cualquier resultado, y luego clickear en cualquier numero, este se concatena en lugar de reemplazar el resultado.
+// FUNCIONALIDADES PARA AGREGAR
+// Poder introducir números decimales
+// Repetir la ultima operación al presionar el signo igual.
+// Ver si se puede evitar el codigo que se repite en el Reducer.
+// Poner estilos con CSS.
 
 
 const initialState = {  // Creo un estado inicial.
     numA: 0,       // Estado que almacenará el primero número a ingresar.
     numB: 0,       // Estado que almacenará el segundo número a ingresar.
-    operador: 'SIN-DEFINIR'         // Estado que almacenará la operación matemática que se realizará entre los dos números ingresados al presionarse '='.
+    operador: 'SIN-DEFINIR',         // Estado que almacenará la operación matemática que se realizará entre los dos números ingresados al presionarse '='.
+    reemplazar: false         // Estado con el que se determinará si el número mostrado debe ser remplazado o no, por el nuevo número que se esta intrduciendo.
 }
 
 // El Reducer contempla el ingreso de un primer número, un operador matemático, un segundo número, y finalmente el
@@ -16,11 +20,11 @@ export default function Reducer (state = initialState, action){
     switch (action.type) { 
         case NUEVO_NUMERO:                  // Si se presionó un botón con un número...
             if (state.operador === 'SIN-DEFINIR'){                // ...y si es el primero de los dos números a ingresar...
-                if (state.numA === 0) {          // ...y si el valor actual del primer número es 0...
+                if (state.numA === 0 || state.reemplazar === true) {          // ...y si el valor actual del primer número es 0, o es el resultado de una operación...
                     return{
                         ...state,
-                        numA: state.numA = Number(action.payload)   // ...remplazo ese 0 por el número ingresado, convirtiendolo al tipo númerico pues me llega como tipo string.
-
+                        numA: state.numA = Number(action.payload),   // ...remplazo ese 0 por el número ingresado, convirtiendolo al tipo númerico pues me llega como tipo string.
+                        reemplazar: state.reemplazar = false
                     };
                 } else {          // Si el valor actual del primer número es distinto a 0.
                     return{
@@ -76,7 +80,8 @@ export default function Reducer (state = initialState, action){
                         ...state,
                         numA: Number(state.numA) + Number(state.numB), 
                         operador: state.operador = 'SIN-DEFINIR',      
-                        numB: state.numB = 0
+                        numB: state.numB = 0,
+                        reemplazar: state.reemplazar = true
                     }
 
                 case '-':      
@@ -84,7 +89,8 @@ export default function Reducer (state = initialState, action){
                         ...state,
                         numA: Number(state.numA) - Number(state.numB),
                         operador: state.operador = 'SIN-DEFINIR',
-                        numB: state.numB = 0
+                        numB: state.numB = 0,
+                        reemplazar: state.reemplazar = true
                     }
 
                 case '*':    
@@ -92,7 +98,8 @@ export default function Reducer (state = initialState, action){
                         ...state,
                         numA: Number(state.numA) * Number(state.numB),
                         operador: state.operador = 'SIN-DEFINIR',
-                        numB: state.numB = 0
+                        numB: state.numB = 0,
+                        reemplazar: state.reemplazar = true
                     }
 
                 case '/':
@@ -100,7 +107,8 @@ export default function Reducer (state = initialState, action){
                         ...state,
                         numA: Number(state.numA) / Number(state.numB),
                         operador: state.operador = 'SIN-DEFINIR',
-                        numB: state.numB = 0
+                        numB: state.numB = 0,
+                        reemplazar: state.reemplazar = true
                     }
 
                 default:
