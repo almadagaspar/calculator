@@ -1,7 +1,7 @@
 import {NUEVO_NUMERO, OPERADOR, CAMBIAR_SIGNO, REINICIAR, RESULTADO} from './Actions.js';
 
 // BUGS ENCONTRADOS
-// Cuando los dos números ingresados tienen decimales, y esos valores decimales son contiguos (Ej: 0.1 y 0.2), el resultado es largo e impreciso.
+// Cuando los dos números ingresados tienen decimales, (Ej: 0.1 y 0.2), duele dar un resultado largo e impreciso.
 
 
 
@@ -118,13 +118,24 @@ export default function Reducer (state = initialState, action){
                     }
 
                 case '/':
-                    return{
-                        ...state,
-                        numA: Number(state.numA) / Number(state.numB),
-                        operador: state.operador = 'SIN-DEFINIR',
-                        numB: state.numB = 0,
-                        reemplazar: state.reemplazar = true
-                    }
+                    if (state.numB !== 0){
+                            return{
+                                ...state,
+                                numA: Number(state.numA) / Number(state.numB),
+                                operador: state.operador = 'SIN-DEFINIR',
+                                numB: state.numB = 0,
+                                reemplazar: state.reemplazar = true
+                            }
+                        } else {
+                            alert('No se puede dividir por cero.')
+                            return{
+                                ...state,
+                                numA: 0,
+                                operador: state.operador = 'SIN-DEFINIR',
+                                numB: state.numB = 0,
+                                reemplazar: state.reemplazar = true
+                            }
+                        }
 
                 default:
                     return state;     // Siempre se debe devolver el estado para los casos en los que el Reducer no pueda procesar la Action recibida.

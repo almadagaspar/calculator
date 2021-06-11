@@ -9,35 +9,39 @@ function Buttons (props){  // A diferencia de un componente de Clase, un compone
     return (
         <div>
             <div>
+                <Button onClick={props.reiniciar} value={'C'} />
+                <Button onClick={props.cambiarSigno} value={'+/-'} />
+                <Button onClick={props.operador} value={'/'} />
+                <Button onClick={props.operador} value={'*'} />
+
+            </div>
+
+            <div>
                 <Button onClick={props.nuevoNumero} value={'7'} />
                 <Button onClick={props.nuevoNumero} value={'8'} />
                 <Button onClick={props.nuevoNumero} value={'9'} />
+                <Button onClick={props.operador} value={'-'} />
             </div> 
+
             <div>
                 <Button onClick={props.nuevoNumero} value={'4'} />
                 <Button onClick={props.nuevoNumero} value={'5'} />
                 <Button onClick={props.nuevoNumero} value={'6'} />
+                <Button onClick={props.operador} value={'+'} />
             </div> 
+
             <div>
                 <Button onClick={props.nuevoNumero} value={'1'} />
                 <Button onClick={props.nuevoNumero} value={'2'} />
                 <Button onClick={props.nuevoNumero} value={'3'} />
+                <Button onClick={props.resultado} value={'='} /> 
             </div> 
+            
             <div>
                 <Button onClick={props.nuevoNumero} value={'0'} />
-            </div>   
-            <div>
-                <Button onClick={props.reiniciar} value={'C'} />
-                <Button onClick={props.operador} value={'/'} />
-                <Button onClick={props.operador} value={'*'} />
-                <Button onClick={props.operador} value={'-'} />
-                <Button onClick={props.operador} value={'+'} />
                 <Button onClick={props.nuevoNumero} value={'.'} />
-            </div>
-            <div>
-                <Button onClick={props.cambiarSigno} value={'+/-'} />
-                <Button onClick={props.resultado} value={'='} /> 
-            </div>
+            </div>   
+
         </div>
 
     )
