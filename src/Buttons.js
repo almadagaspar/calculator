@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from './Button.js';
+import './App.css';
 import { connect } from 'react-redux';        // Importo connect, que es la funcion que conecta este componente con Redux.
 import { nuevoNumero, operador, cambiarSigno, reiniciar, resultado } from './Actions';        // Importo las Actions Creators.
 
@@ -7,41 +8,31 @@ import { nuevoNumero, operador, cambiarSigno, reiniciar, resultado } from './Act
 // la función que se debe ejecutar al hacerce click en cada invocación a 'Button', y tambien el parametro 'value' para cada caso. 
 function Buttons (props){  // A diferencia de un componente de Clase, un componente Funcional debe tener explicitamente el parámetro 'props'.
     return (
-        <div>
-            <div>
-                <Button onClick={props.reiniciar} value={'C'} />
-                <Button onClick={props.cambiarSigno} value={'+/-'} />
-                <Button onClick={props.operador} value={'/'} />
-                <Button onClick={props.operador} value={'*'} />
+        <div className="grid-container">
+           
+                <Button onClick={props.reiniciar} value={'C'} className="btnClear" />
+                <Button onClick={props.cambiarSigno} value={'+/-'} className="btnNormal" />
+                <Button onClick={props.operador} value={'/'} className="btnNormal" />
+                <Button onClick={props.operador} value={'*'} className="btnNormal" />
 
-            </div>
-
-            <div>
-                <Button onClick={props.nuevoNumero} value={'7'} />
-                <Button onClick={props.nuevoNumero} value={'8'} />
-                <Button onClick={props.nuevoNumero} value={'9'} />
-                <Button onClick={props.operador} value={'-'} />
-            </div> 
-
-            <div>
-                <Button onClick={props.nuevoNumero} value={'4'} />
-                <Button onClick={props.nuevoNumero} value={'5'} />
-                <Button onClick={props.nuevoNumero} value={'6'} />
-                <Button onClick={props.operador} value={'+'} />
-            </div> 
-
-            <div>
-                <Button onClick={props.nuevoNumero} value={'1'} />
-                <Button onClick={props.nuevoNumero} value={'2'} />
-                <Button onClick={props.nuevoNumero} value={'3'} />
-                <Button onClick={props.resultado} value={'='} /> 
-            </div> 
+                <Button onClick={props.nuevoNumero} value={'7'} className="btnNormal" />
+                <Button onClick={props.nuevoNumero} value={'8'} className="btnNormal" />
+                <Button onClick={props.nuevoNumero} value={'9'} className="btnNormal" />
+                <Button onClick={props.operador} value={'-'} className="btnNormal" />
             
-            <div>
-                <Button onClick={props.nuevoNumero} value={'0'} />
-                <Button onClick={props.nuevoNumero} value={'.'} />
-            </div>   
-
+                <Button onClick={props.nuevoNumero} value={'4'} className="btnNormal" />
+                <Button onClick={props.nuevoNumero} value={'5'} className="btnNormal" />
+                <Button onClick={props.nuevoNumero} value={'6'} className="btnNormal" />
+                <Button onClick={props.operador} value={'+'} className="btnNormal" />
+            
+                <Button onClick={props.nuevoNumero} value={'1'} className="btnNormal" />
+                <Button onClick={props.nuevoNumero} value={'2'} className="btnNormal" />
+                <Button onClick={props.nuevoNumero} value={'3'} className="btnNormal" />
+                <Button onClick={props.resultado} value={'='}  className="btnEqual"/> 
+             
+                <Button onClick={props.nuevoNumero} value={'0'} className="btnCero" />
+                <Button onClick={props.nuevoNumero} value={'.'} className="btnNormal" />
+               
         </div>
 
     )

@@ -4,55 +4,103 @@
   padding: 0px; 
 }
 
-.App {
 
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  background-color: #bec9cf;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  height: 750px;
-  flex-direction: column;
-
+body {
+  background-color: #a2bbc9;
+  font-family: Verdana, Tahoma, sans-serif;
 }
 
 
-#calculator{
-  display: flex;
-  justify-content: center;
+header {
+  text-align: center;
+  background-color: rgb(74, 72, 100);
+  color: rgb(196, 197, 221);
+  padding-top: 30px;
+  padding-bottom: 50px;
+  border-bottom: 2px solid black;
+}
+
+
+.calculator{
+  padding-top: 50px;
+  margin: 0px auto;
+  margin-top: 70px;
+  background-color: rgb(75, 104, 156);
+  height: 600px;
+  width: 400px;
+  border: 2px solid black;
+  border-radius: 30px;
+}
+
+
+.display{
+  background-color: rgb(148, 209, 191);
+  margin-top: 50px;
   border: 3px solid black;
-  background-color: #255e7c;
-  flex-direction: column;
-  justify-content: space-around;
-  width: 300px;
-  height: 400px;
-  align-items: center;
-  
-}
 
+  width: 85%;
+  height: 80px;
+  margin: 0px auto;
 
-#screen{
   display: flex;
-  width: 80%;
-  height: 50px;
   justify-content: flex-end;
   align-items: center;
-  background-color: #a5e9bc;
-  border: 2px solid black;
+  line-height: 60px;
+  font-size: 40px;
+  padding-right: 10px;
+  border-radius: 8px;
+
+}
+
+.grid-container{
+  display: grid;
+  grid-template-columns: 90px 90px 90px 90px; 
+  grid-template-rows: 80px 80px 80px 80px 80px;
+  width: 87%;
+  margin: 0px auto;
+  margin-top: 50px;;
+  /* border: 1px solid black; */
+
+}
+
+
+.btnNormal {
+
+  border: 1px, solid black;
+  width: 80px;
+  height: 70px;
+  background-color: rgb(221, 221, 221);
   font-size: 30px;
-  padding-right: 5px;
-
-}
-
-.button{
-  width: 60px;
-  height: 40px;
-  font-size: 20px;
-  margin: 2px;
+  border-radius: 8px;
 }
 
 
+.btnEqual {
+  grid-row: 4 / 6;
+  grid-column: 4 / 5;
+  width: 80px;
+  height: 150px;
+  background-color: rgb(221, 221, 221);
+  font-size: 30px;
+  border-radius: 8px;
+} 
 
-.App-link {
-  color: #477683;
+.btnCero {
+  width: 170px;
+  height: 70px;
+  background-color: rgb(221, 221, 221);
+  grid-column: 1/3;
+  font-size: 30px;
+  border-radius: 8px;
+} 
+
+.btnClear {
+  width: 80px;
+  height: 70px;
+  background-color: rgb(243, 56, 56);
+  font-size: 30px;
+  border-radius: 8px;
 }
+
+
+

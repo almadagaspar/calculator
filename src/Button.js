@@ -6,7 +6,7 @@ import './App.css';
 
 export default function Button (props){
     return (
-        <button className="button" onClick={() => props.onClick(props.value)} id='miBoton'>{props.value}</button>    // El mismo character que muestre un boton en la página, será el parametro de la función 'onClick'.
+        <button onClick={() => props.onClick(props.value)} className={props.className} >{props.value}</button>    // El mismo character que muestre un boton en la página, será el parametro de la función 'onClick'.
     )
 }
 
