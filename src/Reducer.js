@@ -4,6 +4,7 @@ import { NUEVO_NUMERO, OPERADOR, CAMBIAR_SIGNO, REINICIAR, RESULTADO } from './A
 // Testing push from Ubuntu 1
 // Testing push from Windows 1
 // Testing push from Ubuntu 2
+// Testing push from Ubuntu 3
 
 const initialState = {  // Creo un estado inicial.
     numA: 0,       // Estado que almacenará el primero número a ingresar.
