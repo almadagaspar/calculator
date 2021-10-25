@@ -1,7 +1,8 @@
 import { NUEVO_NUMERO, OPERADOR, CAMBIAR_SIGNO, REINICIAR, RESULTADO } from './Actions.js';
 
 
-// Testing push in Ubuntu
+// Testing push from Ubuntu 
+// Testing push from Windows
 
 const initialState = {  // Creo un estado inicial.
     numA: 0,       // Estado que almacenará el primero número a ingresar.
