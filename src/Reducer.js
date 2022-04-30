@@ -1,17 +1,6 @@
 import { NUEVO_NUMERO, OPERADOR, CAMBIAR_SIGNO, REINICIAR, RESULTADO } from './Actions.js';
 
 
-// Testing push from Ubuntu 1
-// Testing push from Windows 1
-// Testing push from Ubuntu 2
-// Testing push from Ubuntu 3
-// Testing push from Windows 2
-// Testing push from Windows 3
-// Testing push from Ubuntu 4
-// Testing push from Ubuntu 5
-// Testing push from Ubuntu 6
-// Testing push from Ubuntu 7
-
 const initialState = {  // Creo un estado inicial.
     numA: 0,       // Estado que almacenará el primero número a ingresar.
     numB: 0,       // Estado que almacenará el segundo número a ingresar.
@@ -19,8 +8,8 @@ const initialState = {  // Creo un estado inicial.
     reemplazar: false         // Estado con el que se determinará si el número mostrado debe ser remplazado o no, por el nuevo número que se esta intrduciendo.
 }
 
-// El Reducer contempla el ingreso de un primer número, un operador matemático, un segundo número, y finalmente el
-// boton '=' para realizar la operación entre los dos números. Tambien contempla el cambio de signo del número, y reiniciar todos los valores.
+
+// El Reducer contempla el ingreso de un primer número, un operador matemático, un segundo número, y el boton '=' para generar el resultado. También contempla el cambio de signo del número, y reiniciar todos los valores.
 export default function Reducer(state = initialState, action) {
     switch (action.type) {
         case NUEVO_NUMERO:                  // Si se presionó un botón con un número, o el boton con el punto...
@@ -106,11 +95,11 @@ export default function Reducer(state = initialState, action) {
                 ...state,
                 numA: state.numA = 0,
                 numB: state.numB = 0,
-                operador: state.operador = 'SIN-DEFINIR'
+                operador: state.operador = 'SIN-DEFINIR'   // ¿¿¿ Debo agregar "reemplazar: state.reemplazar = false" ???
             };
 
-        case RESULTADO:     // Si se presionó el boton '='...
-            switch (state.operador) {     // ...relizo la operación matemática correspondiente y almaceno el resultado en el primer número para que se pueda seguir haciendo más cálculos, y reinicio los otros estados.
+        case RESULTADO:     // Si se presionó el boton '=' relaizo la operación matemática correspondiente y almaceno el resultado en el primer número para que se pueda seguir haciendo más cálculos, y reinicio los otros estados.
+            switch (state.operador) {     
                 case '+':
                     return {
                         ...state,
@@ -165,6 +154,5 @@ export default function Reducer(state = initialState, action) {
         default:
             return state;      // Siempre se debe devolver el estado para los casos en los que el Reducer no pueda procesar la Action recibida.
     }
-
 
 }

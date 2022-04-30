@@ -1,4 +1,4 @@
-# Calculadora React+Redux
+# Calculadora React Redux
 
 Este proyecto fué creado usando [Create React App](https://github.com/facebook/create-react-app).
 

@@ -1,19 +1,19 @@
 
 * { 
-  margin: 0px; 
-  padding: 0px; 
+  margin: 0; 
+  padding: 0; 
 }
 
 
 body {
-  background-color: #a2bbc9;
+  background-color: #b44;
   font-family: Verdana, Tahoma, sans-serif;
 }
 
 
 header {
   text-align: center;
-  background-color: rgb(74, 72, 100);
+  background-color: rgb(150, 20, 20);
   color: rgb(221, 221, 221);
   padding-top: 30px;
   padding-bottom: 30px;

@@ -10,7 +10,7 @@ export default function App() {
     <div>
       <header>
         <h1>Calculator</h1>
-        <h2>React + Redux</h2>
+        <h2>React Redux</h2>
       </header>
 
       <div className="calculator">
