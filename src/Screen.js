@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 function Screen (props){   // A diferencia de un componente de Clase, un componente Funcional debe tener explicitamente el parámetro 'props'.
     return (
         // Renderizado condicional para definir si se debe mostrar el primer número ingresado o el segundo.
-        props.operador === 'SIN-DEFINIR' ? <p>{props.numA}</p> : <p>{props.numB}</p>
+        <span id="screenNumber" >{props.operador === 'SIN-DEFINIR' ? props.numA : props.numB}</span>
     )
 }
 

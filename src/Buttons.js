@@ -35,21 +35,9 @@ function Buttons (props){  // A diferencia de un componente de Clase, un compone
 }
 
 
-//  EN ESTE COMPONENTE NO HACE FALTA EL mapStateToProps. 
-// Todos los componentes que necesiten subscribirse al Store tanto para leer su información, como para obtener Actions Creators (que serán automáticamente dispatcheadas al ejecutarse), deben tener como mínimo la función 'mapStateToProps', y el export con la función 'connect'.
-// En la función 'mapStateToProps' defino la información del Store que necesitaré en este componente.
-// const mapStateToProps = (state) => {   
-//   return {
-//       numA: state.numA,
-//       numB: state.numB,
-//       operador: state.operador
-//     };
-// };
-
 
 
 // Usando 'connect' en el 'export default', estoy exportando una versión de este componente donde ya tiene en sus props los estados definidos en 'mapStateToProps', y las 'Actions Creators' presentes en el segundo parámetro. Estas 'Actions Creators' son solo las que necesito en este componente, y serán automáticamente dispatcheadas al ejecutarse.  
 export default connect(null, { nuevoNumero, operador, cambiarSigno, reiniciar ,resultado })(Buttons);    
 
-//  EN ESTE COMPONENTE NO HACE FALTA EL mapStateToProps. 
-// export default connect(mapStateToProps, { nuevoNumero, operador, cambiarSigno, reiniciar ,resultado })(Buttons);    
+
