@@ -5,7 +5,7 @@ const initialState = {  // Creo un estado inicial.
     numA: "0",       // Estado que almacenará el primero número a ingresar.
     numB: "0",       // Estado que almacenará el segundo número a ingresar.
     operador: 'SIN-DEFINIR',         // Estado que almacenará la operación matemática que se realizará entre los dos números ingresados al presionarse '='.
-    reemplazar: false         // Estado con el que se determinará si el número mostrado debe ser remplazado o no, por el nuevo número que se esta intrduciendo.
+    reemplazar: false         // Debo reemplazar el número mostrado por el nuevo número que se esta ingresando?
 }
 
 
@@ -16,21 +16,24 @@ export default function Reducer(state = initialState, action) {
         
         const screenNumber = document.getElementById("screenNumber").innerText;
 
-            // Evito que se introduzca más de un punto, que el numero ingresado sea mayor que la pantalla, y que se concatenen ceros como primer valor.
-            if ( (action.payload === "." && screenNumber.includes('.')) ||
-                screenNumber.length >= 10  ||
-                (screenNumber === "0" && action.payload === "0")) {
+            if ((action.payload === "." && screenNumber.includes('.')) ||   // Evito que se introduzca más de un punto...
+                (action.payload === "." && state.reemplazar === true) ||   // ... que se pueda introducir un punto tras obtener un resultado.
+                 screenNumber.length >= 11  ||                              // ... que el numero ingresado sea mayor que la pantalla.
+                (screenNumber === "0" && action.payload === "0") ){       // ... que se concatenen ceros como primer valor.
                 return { ...state }
             }
 
             // Si tengo que reemplazar el "0"
-            if (screenNumber === "0" && action.payload !== ".") {  
+            if (screenNumber === "0" && action.payload !== "." || 
+                state.reemplazar === true) {  
                 return state.operador === 'SIN-DEFINIR' ? {
                     ...state,
-                    numA: action.payload 
+                    numA: action.payload,
+                    reemplazar: false  
                 } : {
                     ...state,
-                    numB: action.payload 
+                    numB: action.payload,
+                    reemplazar: false  
                 }       
             }
             
@@ -61,7 +64,8 @@ export default function Reducer(state = initialState, action) {
                 ...state,
                 numA: state.numA = "0",
                 numB: state.numB = "0",
-                operador: state.operador = 'SIN-DEFINIR'   // ¿¿¿ Debo agregar "reemplazar: state.reemplazar = false" ???
+                operador: state.operador = 'SIN-DEFINIR', 
+                reemplazar: state.reemplazar = false
             };
         case RESULTADO:     // Si se presionó el boton '=' relaizo la operación matemática correspondiente y almaceno el resultado en el primer número para que se pueda seguir haciendo más cálculos, y reinicio los otros estados.
             switch (state.operador) {     
