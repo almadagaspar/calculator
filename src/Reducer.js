@@ -87,6 +87,11 @@ export default function Reducer(state = initialState, action) {
 
 
 function resolveNewState (state, numA_value, reemplazarValue) {
+	// Si el resultado de la operación es más extenso que el tamaño de la pantalla, lo reduzco.
+	if (numA_value.toString().length > 11) {
+		numA_value = Number(numA_value.toString().slice(0,11))
+	}
+
     return {
             ...state,
             numA: numA_value,
