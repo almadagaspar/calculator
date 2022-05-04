@@ -1,41 +1,41 @@
 // Creo constantes que describen las acciones tanto en su nombre como en su valor, y que serán usadas en el 'type' de cada Action. Las exporto para poder usarlos también en el Reducer. Con su uso, evito errores de tipeo al usar autocompletado.
-export const NUEVO_NUMERO = 'NUEVO_NUMERO';
-export const OPERADOR = 'OPERADOR';
-export const CAMBIAR_SIGNO = 'CAMBIAR_SIGNO';
-export const REINICIAR = 'REINICIAR';
-export const RESULTADO = 'RESULTADO';
+export const NEW_NUMBER = "NEW_NUMBER";
+export const OPERATOR = "OPERATOR";
+export const CHANGE_SIGN = "CHANGE_SIGN";
+export const RESET = "RESET";
+export const RESULT = "RESULT";
 
 
 // Los siguientes Action Creators se invocarán...
-export const nuevoNumero = (nuevoNum) => {  // ...cada vez que se presione un número
+export const newNum = (newNum) => {  // ...cada vez que se presione un número
     return {
-      type: NUEVO_NUMERO,
-      payload: nuevoNum
+      type: NEW_NUMBER,
+      payload: newNum
     };
 };
 
-export const operador = (tipoOperador) => {  // ...cuando se haga click en un operador matemático
+export const operator = (operator) => {  // ...cuando se haga click en un operador matemático
     return {
-      type: OPERADOR,
-      payload: tipoOperador
+      type: OPERATOR,
+      payload: operator
     };
 };
 
-export const cambiarSigno = () => {  // ...cada vez que se haga click en el boton para cambiar el signo del número ingresado
+export const changeSign = () => {  // ...cada vez que se haga click en el boton para cambiar el signo del número ingresado
   return {
-    type: CAMBIAR_SIGNO
+    type: CHANGE_SIGN
   };
 };
 
-export const reiniciar = () => {  // ...cada vez que se presione el boton 'C' (Clear)
+export const reset = () => {  // ...cada vez que se presione el boton 'C' (Clear)
   return {
-    type: REINICIAR
+    type: RESET
   };
 };
 
-export const resultado = () => {  // ...cada vez que se presione el boton '='
+export const result = () => {  // ...cada vez que se presione el boton '='
     return {
-      type: RESULTADO
+      type: RESULT
     };
 };
 
