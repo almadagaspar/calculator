@@ -1,7 +1,7 @@
 import React from 'react';
-import './App.css';
 import Buttons from './Buttons.js';
 import Screen from './Screen.js';
+import './App.css';
 
 
 
@@ -9,7 +9,7 @@ export default function App() {
   return (
     <div>
       <header>
-        <h1>Calculator</h1>
+        <h2>CALCULATOR</h2>
         <h2>React Redux</h2>
       </header>
 

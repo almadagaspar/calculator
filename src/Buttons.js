@@ -1,6 +1,5 @@
 import React from 'react';
 import Button from './Button.js';
-import './App.css';
 import { connect } from 'react-redux';        // Importo connect, que es la funcion que conecta este componente con Redux.
 import { newNum, operator, changeSign, reset, result } from './Actions';        // Importo las Actions Creators.
 

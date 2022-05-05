@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';    
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import App from './App';  
 import Reducer from './Reducer.js';
+import App from './App';  
 
 // Creo el Store para almacenar los estados globales de mi aplicación, y lo conecto con mi Reducer pasandoselo por parámetro. 
 // Con el segundo parámetro permito que la extención Redux DevTool pueda leer los estados de  mi aplicación
