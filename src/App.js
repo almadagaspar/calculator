@@ -1,7 +1,7 @@
-import React from 'react';
-import Buttons from './Buttons.js';
-import Screen from './Screen.js';
-import './App.css';
+import React from "react";
+import Buttons from "./Buttons.js";
+import Screen from "./Screen.js";
+import "./App.css";
 
 
 

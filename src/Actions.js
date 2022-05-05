@@ -1,4 +1,4 @@
-// Creo constantes que describen las acciones tanto en su nombre como en su valor, y que serán usadas en el 'type' de cada Action. Las exporto para poder usarlos también en el Reducer. Con su uso, evito errores de tipeo al usar autocompletado.
+// Constantes que describen las acciones tanto en su nombre como en su valor, y que serán usadas en el 'type' de cada Action. Las exporto para poder usarlos también en el Reducer. Su uso evita errores de tipeo al usar autocompletado.
 export const NEW_NUMBER = "NEW_NUMBER";
 export const OPERATOR = "OPERATOR";
 export const CHANGE_SIGN = "CHANGE_SIGN";
@@ -6,7 +6,7 @@ export const RESET = "RESET";
 export const RESULT = "RESULT";
 
 
-// Los siguientes Action Creators se invocarán...
+// Estas Action Creators se invocarán...
 export const newNum = (newNum) => {  // ...cada vez que se presione un número
     return {
       type: NEW_NUMBER,
