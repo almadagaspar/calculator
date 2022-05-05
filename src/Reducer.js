@@ -45,11 +45,11 @@ export default function Reducer(state = initialState, action) {
 			}
 
 		case OPERATOR:             // Si se presionó sobre un operador matemático...
+			if (state.operator !== "") return state   // Si ya se eligiió un operador, no permito que se elija otro.
 			return {
 				...state,
 				operator: action.payload           // Lo almaceno en mi estado.
 			}
-
 		case CHANGE_SIGN:      // Si se presionó el boton para cambiar el signo...
 			return state.operator === "" ? {
 				...state,
@@ -97,7 +97,7 @@ function getNewState (state, numA_value, replace_value) {
 	}
     return {
             ...state,
-            numA: numA_value,
+            numA: numA_value.toString(),
             numB: "0",
             operator: "",
             replace: replace_value
