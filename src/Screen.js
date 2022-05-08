@@ -1,11 +1,12 @@
 import React from "react";
 import { connect } from "react-redux"; 
+import { screenCapacity } from "./Reducer.js"
 
 // Este componente mostrará el número que se esta ingresando, o el resultado de una operación.
 function Screen (props){   // A diferencia de un componente de Clase, un componente Funcional debe tener explicitamente el parámetro "props".
     return (
-        // Renderizado condicional para definir si se debe mostrar el primer número ingresado o el segundo.
-        <span id="screen" >{props.operator === "" ? props.numA : props.numB}</span>
+        // Renderizados condicionales para definir el tamaño del numero en la pantalla, y si se debe mostrar el primer número ingresado o el segundo.
+        <span id="screen" className={props.numA.length > screenCapacity ? " long-size" : " normal-size"}>{props.operator === "" ? props.numA : props.numB}</span>
     )
 }
 

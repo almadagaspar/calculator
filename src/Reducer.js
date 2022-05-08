@@ -8,16 +8,20 @@ const initialState = {  // Estado inicial.
   replace: false          // ¿ Debo reemplazar el número mostrado por el nuevo número que se esta ingresando?
 }
 
+export const screenCapacity = 11; // Longitud de la pantalla de la calculadora para mostrar números ingresados.
+const screenExtraCapacity = screenCapacity + 3; // Longitud extra de la pantalla de la calculadora, solo para mostrar resultados muy grandes.
+
+
 export default function Reducer(state = initialState, action) {
 	switch (action.type) {
 		case NEW_NUMBER:      // Si se presionó un botón con un número, o el boton con el punto...
 
 			const numberShown = document.getElementById("screen").innerText;  // Capturo el número mostrado actualmente en la pantalla.
 
-			if ((action.payload === "." && numberShown.includes(".")) ||   // Evito que se introduzca más de un punto...
-				(action.payload === "." && state.replace === true) ||     // ... que se pueda introducir un punto tras obtener un resultado.
-				numberShown.length >= 11  ||                               // ... que el numero ingresado sea mayor que la pantalla.
-				(numberShown === "0" && action.payload === "0") ){        // ... que se concatenen ceros como primer valor.
+			if ((action.payload === "." && numberShown.includes(".")) ||   // Evito que se introduzca más de un punto.
+				(action.payload === "." && state.replace === true) ||      // Evito que se pueda introducir un punto tras obtener un resultado.
+				(numberShown.length >= screenCapacity && state.replace === false) ||      // Evito que el numero ingresado sea mayor que la pantalla.
+				(numberShown === "0" && action.payload === "0") ){         // Evito que se concatenen ceros como primer valor.
 					return { ...state }
 			}
 
@@ -93,14 +97,24 @@ export default function Reducer(state = initialState, action) {
 
 // Calculo segun los parámetros recividos, cual es el nuevo estado que debe devolver el Reducer.
 function getNewState (state, numA_value, replace_value) {
-	if (numA_value.toString().length > 11) {     // Si el resultado de la operación es más extenso que el tamaño de la pantalla, lo reduzco.
-		numA_value = Number(numA_value.toString().slice(0,11))
+	
+	// No muestro resultados que incluyen "e", y resultados enteros cuya logitud es mayor a la capacidad extra de la pantalla.
+	if (numA_value.toString().includes("e")
+		|| (!numA_value.toString().includes(".") && numA_value.toString().length > screenExtraCapacity)	) {
+			alert ("The result in too long to show. Operation cancelled.")
+			numA_value = "0"
+	}
+
+	// Si el resultado de la operación es decimal y es más extenso que el tamaño de la pantalla, lo reduzco.
+	if (numA_value.toString().includes(".") && numA_value.toString().length > screenCapacity) {
+		numA_value = Number(numA_value.toString().slice(0,screenCapacity))
 	}
     return {
-            ...state,
-            numA: numA_value.toString(),
-            numB: "0",
-            operator: "",
-            replace: replace_value
-        }
+		...state,
+		numA: numA_value.toString(),
+		numB: "0",
+		operator: "",
+		replace: replace_value
+	}
 }
+

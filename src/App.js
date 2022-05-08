@@ -14,7 +14,7 @@ export default function App() {
       </header>
 
       <div className="calculator">
-        <div className="screen">
+        <div>
           <Screen />      {/* Componente que muestra el numero ingresado, o el resultado obtenido de una operación */}
         </div>
         

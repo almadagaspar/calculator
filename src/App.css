@@ -32,7 +32,7 @@ body {
 }
 
 
-.screen{
+#screen{
   margin: 0px auto;
   width: 83%;
   height: 75px;
@@ -44,6 +44,15 @@ body {
   justify-content: flex-end;
   align-items: center;
   line-height: 75px;
+}
+
+
+.long-size {
+  font-size: 35px;
+}
+
+
+.normal-size {
   font-size: 47px;
 }
 
